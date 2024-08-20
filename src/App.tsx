@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import './App.css'
+import { Header } from './sections/Header'
 
 const App = () => {
   
   return (
-    <>
-    <h1 className='text-cyan-700'> ty </h1>
-    </>
+    <div className='bg-black h-full'>
+      <Header />
+    </div>
   )
 }
 

@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 // Typing the value context
 interface LangContextType {
     lang: string;
-    toggleLang: (lang: string) => void;
+    toggleLang: () => void;
 }
 
 // Create the context
