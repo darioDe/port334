@@ -9,7 +9,7 @@ interface ThemeContextType {
 // Create the context
 const themeContext = createContext<ThemeContextType>({
     theme: 'dark-theme',
-    toggleTheme: () => {}
+    toggleTheme: () => {},
 })
 
 // Create the Provider
