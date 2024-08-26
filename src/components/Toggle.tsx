@@ -10,7 +10,7 @@ interface ToggleProps {
 };
 
 export const Toggle: React.FC<ToggleProps> = ({ label, context, icon}) => {
-    const { value, toggle } = context;
+    const { toggle } = context;
 
     return (
         <button
