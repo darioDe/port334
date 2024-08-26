@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
                     icon={langIcon}
                 />
             </div >
-            <div className="flex flex-col justify-center align-center">
+            <div className="flex flex-col justify-center items-center">
                 <h1 className={`text-4xl font-semibold ${theme === 'dark-theme' ? 'text-slate-200' : 'text-slate-900'}`}> Ruben Dario Duarte </h1>
                 <h2 className="text-7xl text-blue-500 font-bold">
                     {lang === 'spanish' ? 
