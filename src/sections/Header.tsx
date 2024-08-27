@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
 
     return (
         <header>
-            <div className="flex justify-end p-2 gap-1">
+            <div className="flex justify-end p-2 gap-1 fade-in">
                 <Toggle 
                     label='dark-theme'
                     context={{ value: theme,toggle: toggleTheme }}
@@ -25,9 +25,15 @@ export const Header: React.FC = () => {
                     icon={langIcon}
                 />
             </div >
-            <div className="flex flex-col justify-center items-center">
-                <h1 className={`text-4xl font-semibold ${theme === 'dark-theme' ? 'text-slate-200' : 'text-slate-900'}`}> Ruben Dario Duarte </h1>
-                <h2 className="text-7xl text-blue-500 font-bold">
+            <div className="flex flex-col justify-center items-center my-28">
+                <h1 
+                    className={`text-2xl md:text-4xl lg:text-6xl font-semibold fade-in-right ${theme === 'dark-theme' ? 'text-slate-200' : 'text-slate-900'}`}
+                > 
+                    Ruben Dario Duarte 
+                </h1>
+                <h2 
+                    className="text-center text-5xl md:text-7xl lg:text-9xl text-blue-500 font-bold mb-7 fade-in-left"
+                >
                     {lang === 'spanish' ? 
                         <>  
                             Desarrollador <br /> Frontend
@@ -37,25 +43,27 @@ export const Header: React.FC = () => {
                         </>
                     }
                 </h2>
-            <div className='inline-flex items-center bg-blue-500  text-white font-semibold py-2 px-4 rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:bg-blue-700'>
-                <a 
-                    href=""
-                    download='CVRubenDuarte.pdf'
-                    className='flex items-center space-x-2'                
+                <div 
+                    className='fade-in inline-flex items-center bg-blue-700  text-white font-semibold py-2 px-4 rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:bg-blue-900 mb-2'
                 >
-                    <img src={download} alt="" className="w-6 h-6" />
-                    <p>
-                        {lang === 'spanish' ?
-                            'Descarga mi CV' 
-                            : 
-                            'Download my CV'
-                        } 
-                    </p>
-                </a>
-            </div>
-                <div className='flex'>
                     <a 
-                        className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer bg-blue-500 group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:bg-blue-700" 
+                        href=""
+                        download='CVRubenDuarte.pdf'
+                        className='flex items-center space-x-2'                
+                    >
+                        <img src={download} alt="" className="w-6 h-6" />
+                        <p>
+                            {lang === 'spanish' ?
+                                'Descarga mi CV' 
+                                : 
+                                'Download my CV'
+                            } 
+                        </p>
+                    </a>
+                </div>
+                <div className='flex gap-2 fade-in'>
+                    <a 
+                        className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer bg-blue-700 group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:bg-blue-900" 
                         href="http://" 
                         target="_blank" 
                         rel="noopener noreferrer"
@@ -63,7 +71,7 @@ export const Header: React.FC = () => {
                         <img className="p-2" src={linkedin} alt="" />
                     </a>
                     <a 
-                        className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer bg-blue-500 group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:bg-blue-700"
+                        className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer bg-blue-700 group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:bg-blue-900"
                         href="http://"
                         target="_blank" 
                         rel="noopener noreferrer"
