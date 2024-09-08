@@ -2,17 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Estilos globales */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-  
+
 #root {
     height: 100%;
 }
 
+/* Animaciones */
 @keyframes fadeInLeft {
     0% {
         opacity: 0;
@@ -44,6 +46,16 @@ html, body {
     }
 }
 
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-55%);
+    }
+}
+
+/* Clases de animación */
 .fade-in-left {
     animation: fadeInLeft 1s ease-out forwards;
 }
@@ -56,4 +68,35 @@ html, body {
     animation: fadeIn 2s ease-out forwards;
     animation-delay: 1s;
     opacity: 0;
+}
+
+/* Carrusel */
+.carousel {
+    display: flex;
+    animation: slide 5s linear infinite;
+    width: max-content; /* Asegura que el contenido no colapse */
+}
+
+.overflow-hidden {
+    max-width: 240px; /* Ajusta el tamaño del carrusel */
+    overflow: hidden;
+}
+
+/* Ajuste para mobile y desktop */
+@media (max-width: 768px) {
+    .carousel {
+        width: 150%; /* Mostrar 4 iconos en mobile */
+    }
+
+    hr {
+        width: 100%; /* Extiende el hr en mobile */
+    }
+}
+
+@media (min-width: 768px) {
+    /* Ajuste para desktop */
+    .carousel {
+        justify-content: center;
+        margin: 0 1rem; /* Ajusta el margen para desktop */
+    }
 }
