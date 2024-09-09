@@ -70,33 +70,3 @@ html, body {
     opacity: 0;
 }
 
-/* Carrusel */
-.carousel {
-    display: flex;
-    animation: slide 5s linear infinite;
-    width: max-content; /* Asegura que el contenido no colapse */
-}
-
-.overflow-hidden {
-    max-width: 240px; /* Ajusta el tamaño del carrusel */
-    overflow: hidden;
-}
-
-/* Ajuste para mobile y desktop */
-@media (max-width: 768px) {
-    .carousel {
-        width: 150%; /* Mostrar 4 iconos en mobile */
-    }
-
-    hr {
-        width: 100%; /* Extiende el hr en mobile */
-    }
-}
-
-@media (min-width: 768px) {
-    /* Ajuste para desktop */
-    .carousel {
-        justify-content: center;
-        margin: 0 1rem; /* Ajusta el margen para desktop */
-    }
-}
