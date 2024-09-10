@@ -5,14 +5,14 @@ import linkedin from '../assets/in.svg';
 import github from '../assets/github.svg';
 import { Toggle } from "../components/Toggle";
 import {  useLang } from "../context/LangContext";
-import download from '../assets/download.svg'
+// import download from '../assets/download.svg'
 
 export const Header: React.FC = () => {
     const { theme, toggleTheme } = useTheme();
     const { lang, toggleLang} = useLang();
 
     return (
-        <header className='w-full h-full h-screen flex flex-col'>
+        <header className='w-full h-screen flex flex-col'>
              <div className="flex justify-end p-2 gap-1 fade-in">
                 <Toggle 
                     label='dark-theme'
