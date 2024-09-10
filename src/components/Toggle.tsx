@@ -1,5 +1,3 @@
-import React from 'react'
-
 interface ToggleProps {
     label: string;
     context: { 
@@ -15,7 +13,7 @@ export const Toggle: React.FC<ToggleProps> = ({ label, context, icon}) => {
     return (
         <button
             onClick={toggle}
-            className='w-8 h-8 flex items-center justify-center rounded-full cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:border-2 hover:border-blue-500'      
+            className='w-8 h-8 flex items-center justify-center rounded-full cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:border-2 hover:border-green-500'      
         >
             <img 
                 src={icon}

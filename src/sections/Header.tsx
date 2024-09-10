@@ -12,7 +12,7 @@ export const Header: React.FC = () => {
     const { lang, toggleLang} = useLang();
 
     return (
-        <header className='fixed inset-0 w-full h-full flex flex-col'>
+        <header className='w-full h-full h-screen flex flex-col'>
              <div className="flex justify-end p-2 gap-1 fade-in">
                 <Toggle 
                     label='dark-theme'
@@ -29,12 +29,12 @@ export const Header: React.FC = () => {
             <div className="flex flex-col justify-between items-center flex-grow">
                 <div className="flex flex-col items-center justify-center flex-grow">
                     <h1 
-                        className={`text-2xl md:text-4xl lg:text-6xl font-semibold fade-in-right ${theme === 'dark-theme' ? 'text-slate-200' : 'text-slate-900'}`}
+                        className={`text-2xl md:text-4xl lg:text-6xl font-semibold fade-in-right text-green-500`}
                     > 
                         Ruben Dario Duarte 
                     </h1>
                     <h2 
-                        className="text-center text-5xl md:text-7xl lg:text-9xl text-blue-500 font-bold mb-7 fade-in-left"
+                        className={`text-center text-5xl md:text-7xl lg:text-9xl font-bold mb-7 fade-in-left ${theme === 'dark-theme' ? 'text-slate-200' : 'text-slate-900'}`}
                     >
                         {lang === 'spanish' ? 
                             <>  
@@ -48,8 +48,8 @@ export const Header: React.FC = () => {
                 </div>
 
                 <div className="flex flex-col items-center gap-3 mb-8">
-                    <div 
-                        className='fade-in inline-flex items-center border-2 border-blue-500 text-blue-500 font-semibold py-2 px-4 rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 '
+                    {/* <div 
+                        className={`fade-in inline-flex items-center border-2 border-green-500 text-green-500 font-semibold py-2 px-4 rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 ${theme === 'dark-theme' ?'hover:bg-black' : 'hover:bg-white'}`}
                     >
                         <a 
                             href=""
@@ -65,11 +65,12 @@ export const Header: React.FC = () => {
                                 } 
                             </p>
                         </a>
-                    </div>
+                    </div> */}
 
                     <div className='flex gap-2 fade-in'>
                         <a 
-                            className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer border-2 border-blue-500 group transition-transform duration-300 ease-in-out transform hover:scale-110" 
+                            className="w-12
+                             h-12 flex items-center justify-center rounded-full cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110" 
                             href="http://" 
                             target="_blank" 
                             rel="noopener noreferrer"
@@ -77,13 +78,12 @@ export const Header: React.FC = () => {
                             <img className="p-2" src={linkedin} alt="" />
                         </a>
                         <a 
-                            className="w-8 h-8 flex items-center justify-center rounded-full cursor-pointer 
-                            border-2 border-blue-500 group transition-transform duration-300 ease-in-out transform hover:scale-110"
+                            className="w-11 h-12 flex items-center justify-center rounded-full cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110"
                             href="http://"
                             target="_blank" 
                             rel="noopener noreferrer"
                         >
-                            <img className="p-2" src={github} alt="" />
+                            <img className="p-1" src={github} alt="" />
                         </a>
                     </div>
                 </div>
