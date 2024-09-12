@@ -1,5 +1,3 @@
-import {  useTheme } from "../context/ThemeContext";
-import sunIcon from '../assets/sun.svg'
 import langIcon from '../assets/lang.svg'
 import linkedin from '../assets/in.svg';
 import github from '../assets/github.svg';
@@ -8,17 +6,11 @@ import {  useLang } from "../context/LangContext";
 // import download from '../assets/download.svg'
 
 export const Header: React.FC = () => {
-    const { theme, toggleTheme } = useTheme();
     const { lang, toggleLang} = useLang();
 
     return (
         <header className='w-full h-screen flex flex-col'>
              <div className="flex justify-end p-2 gap-1 fade-in">
-                <Toggle 
-                    label='dark-theme'
-                    context={{ value: theme,toggle: toggleTheme }}
-                    icon={sunIcon}
-                />
                 <Toggle 
                     label='spanish'
                     context={{ value: lang,toggle: toggleLang }}
@@ -29,19 +21,19 @@ export const Header: React.FC = () => {
             <div className="flex flex-col justify-between items-center flex-grow">
                 <div className="flex flex-col items-center justify-center flex-grow">
                     <h1 
-                        className={`text-2xl md:text-4xl lg:text-6xl font-semibold fade-in-right text-green-500`}
+                        className='text-center text-5xl md:text-7xl lg:text-9xl font-bold mb-3 fade-in-left text-slate-500'
                     > 
-                        Ruben Dario Duarte 
+                        Ruben Duarte 
                     </h1>
                     <h2 
-                        className={`text-center text-5xl md:text-7xl lg:text-9xl font-bold mb-7 fade-in-left ${theme === 'dark-theme' ? 'text-slate-200' : 'text-slate-900'}`}
+                        className='text-2xl md:text-4xl lg:text-6xl font-semibold fade-in-right text-slate-900'
                     >
                         {lang === 'spanish' ? 
                             <>  
-                                Desarrollador <br /> Frontend
+                                Desarrollador Frontend
                             </>  : 
                             <>
-                                Frontend <br /> Developer
+                                Frontend Developer
                             </>
                         }
                     </h2>

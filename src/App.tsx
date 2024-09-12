@@ -1,16 +1,14 @@
-import './App.css'
-import { Header } from './sections/Header'
-import { useTheme } from './context/ThemeContext'
+import './App.css';
+import { Header } from './sections/Header';
 import { MatrixBackground } from './background/MatrixBackground';
 import About from './sections/About';
 
 
 const App = () => {
-  const { theme } = useTheme();
 
   return (
-    <div className={`min-h-screen transition-colors duration-500`}>
-      <MatrixBackground theme={theme} />
+    <div className='in-h-screen transition-colors duration-500'>
+      <MatrixBackground />
       <Header />
       <About />
     </div>

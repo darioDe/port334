@@ -1,11 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 
-// Define types for component's props
-interface MatrixBackgroundProps {
-  theme: 'dark-theme' | 'light-theme' | string
-};
-
-export const MatrixBackground: React.FC<MatrixBackgroundProps> = ({ theme }) => {
+export const MatrixBackground: React.FC = () => {
     //Ref to the canvas element
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -31,21 +26,14 @@ export const MatrixBackground: React.FC<MatrixBackgroundProps> = ({ theme }) => 
         const drops: number[] = new Array(Math.floor(columns)).fill(1)
 
         const getColor = () => {
-        if (theme === 'dark-theme') {
-            const baseGray = 40
-            const variance = 20
-            const gray = baseGray + Math.random() * variance
-            return `rgba(${gray}, ${gray}, ${gray}, 0.8)`
-        } else {
             const baseGray = 200
             const variance = 20
             const gray = baseGray - Math.random() * variance
             return `rgba(${gray}, ${gray}, ${gray}, 0.8)`
         }
-        }
 
         const draw = () => {
-        ctx.fillStyle = theme === 'dark-theme' ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)'
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.05)'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
 
         for (let i = 0; i < drops.length; i++) {
@@ -70,7 +58,7 @@ export const MatrixBackground: React.FC<MatrixBackgroundProps> = ({ theme }) => 
             window.removeEventListener('resize', resizeCanvas)
             cancelAnimationFrame(animationFrameId)
         }
-  }, [theme])
+  }, [])
 
   return (
     <canvas
