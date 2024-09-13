@@ -16,9 +16,9 @@ export default function About({}: Props) {
     const { lang } = useLang();
 
   return (
-    <div className='mt-24'>
+    <div className='mt-24 flex'>
         <div className='p-10 flex flex-col justify-center items-center'>
-            <div className='flex items-center gap-6'>
+            <div className='flex items-center'>
                 <hr className='w-20 h-1 bg-slate-600'/>
                 
                     <h3 
@@ -27,10 +27,10 @@ export default function About({}: Props) {
                         {lang === 'spanish' ? 'Sobre Mi' : 'About Me'}
                     </h3>
                 <hr className='w-20 h-1 bg-slate-600'/>
-
             </div>
-            <div className='mt-16 flex flex-col md:flex-row'>
-                <div className='md:w-1/2'>
+
+            <div className='mt-16 flex flex-col md:flex-row md:p-16 gap-16'>
+                <div className='md:w-1/2 text- md:text-start'>
                     <p className='m-2 text-slate-900'>
                         Soy un desarrollador frontend autodidacta con pasión por crear aplicaciones web intuitivas y funcionales. Manejo principalmente JavaScript y su ecosistema, trabajando con React, TypeScript y Tailwind CSS para desarrollar interfaces modernas y eficientes. Me considero un eterno aprendiz, siempre explorando nuevas tecnologías para mejorar mis habilidades y ofrecer mejores soluciones.
                     </p>
@@ -46,7 +46,7 @@ export default function About({}: Props) {
                     </p>
                 </div>
 
-                <div className='md:w-1/2 grid grid-cols-3 gap-4'>
+                <div className='md:w-1/2 grid grid-cols-3 gap-4 md:p-16 justify-items-center' >
                     <div className='w-14 h-14 bg-slate-700 p-3 rounded-2xl'>
                         <img src={html5} alt="" />
                     </div>

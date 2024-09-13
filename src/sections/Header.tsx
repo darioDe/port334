@@ -3,7 +3,7 @@ import linkedin from '../assets/in.svg';
 import github from '../assets/github.svg';
 import { Toggle } from "../components/Toggle";
 import {  useLang } from "../context/LangContext";
-// import download from '../assets/download.svg'
+import perfil from '../assets/perfil.jpg'
 
 export const Header: React.FC = () => {
     const { lang, toggleLang} = useLang();
@@ -21,9 +21,11 @@ export const Header: React.FC = () => {
             <div className="flex flex-col justify-between items-center flex-grow">
                 <div className="flex flex-col items-center justify-center flex-grow">
                     <h1 
-                        className='text-center text-5xl md:text-7xl lg:text-9xl font-bold mb-3 fade-in-left text-slate-500'
+                        className='text-center text-8xl md:text-7xl lg:text-9xl font-semibold mb-3 fade-in-left text-slate-500'
                     > 
-                        Ruben Duarte 
+                        Ruben <span className="hidden md:inline"> </span>
+                        <br className="block md:hidden" />
+                         Duarte 
                     </h1>
                     <h2 
                         className='text-2xl md:text-4xl lg:text-6xl font-semibold fade-in-right text-slate-900'
@@ -39,7 +41,7 @@ export const Header: React.FC = () => {
                     </h2>
                 </div>
 
-                <div className="flex flex-col items-center gap-3 mb-8">
+                <div className="flex flex-col items-center gap-3 mb-14">
                     {/* <div 
                         className={`fade-in inline-flex items-center border-2 border-green-500 text-green-500 font-semibold py-2 px-4 rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 ${theme === 'dark-theme' ?'hover:bg-black' : 'hover:bg-white'}`}
                     >
