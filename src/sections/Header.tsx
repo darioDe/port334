@@ -19,7 +19,7 @@ export const Header: React.FC = () => {
             <div className="flex flex-col justify-between items-center flex-grow">
                 <div className="flex flex-col items-center justify-center flex-grow">
                     <h1 
-                        className='text-center text-8xl md:text-7xl lg:text-9xl font-semibold mb-3 fade-in-left text-slate-500'
+                        className='text-center text-8xl md:text-7xl lg:text-9xl mb-3 fade-in-left text-slate-500'
                     > 
                         Ruben <span className="hidden md:inline"> </span>
                         <br className="block md:hidden" />
