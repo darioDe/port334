@@ -3,8 +3,6 @@ import linkedin from '../assets/in.svg';
 import github from '../assets/github.svg';
 import { Toggle } from "../components/Toggle";
 import {  useLang } from "../context/LangContext";
-import perfil from '../assets/perfil.jpg'
-
 export const Header: React.FC = () => {
     const { lang, toggleLang} = useLang();
 

@@ -18,7 +18,7 @@ export const Toggle: React.FC<ToggleProps> = ({ label, context, icon}) => {
             <img 
                 src={icon}
                 alt={`${label} icon`}
-                className='w-5 h-5'
+                className='w-6 h-6'
             />
         </button>
     )
