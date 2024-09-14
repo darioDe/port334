@@ -43,7 +43,7 @@ export default function About({}: Props) {
                     </p>
 
                     <p className='m-2 text-slate-900'>
-                        Mi enfoque está en escribir <span className="font-bold">código limpio, reutilizable y escalable< /span>, mientras sigo las mejores prácticas del sector. Siempre busco aprender algo nuevo y llevar mis proyectos al siguiente nivel. Estoy emocionado por empezar mi carrera profesional y poner en práctica todo lo que he aprendido hasta ahora.
+                        Mi enfoque está en escribir <span className="font-bold">código limpio, reutilizable y escalable</span>, mientras sigo las mejores prácticas del sector. Siempre busco aprender algo nuevo y llevar mis proyectos al siguiente nivel. Estoy emocionado por empezar mi carrera profesional y poner en práctica todo lo que he aprendido hasta ahora.
 
                     </p>
                 </div>
