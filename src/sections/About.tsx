@@ -38,7 +38,7 @@ export default function About() {
                     }
                 });
             },
-            { threshold: 0.5 }
+            { threshold: 0.3 }
         );
 
         if (titleRef.current) observer.observe(titleRef.current);
@@ -60,14 +60,14 @@ export default function About() {
             ref={titleRef}
         >
             <div className='flex items-center'>
-                <hr className='w-20 md:w-40 m-1 md:m-5 h-1 bg-slate-600'/>
+                <hr className='w-20 md:w-40 m-1 md:m-5 bg-slate-900'/>
                 
                     <h3 
-                        className='text-2xl md:text-3xl lg:text-4xl font-bold text-slate-600'
+                        className='text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900'
                     >
                         {lang === 'spanish' ? 'Sobre Mi' : 'About Me'}
                     </h3>
-                <hr className='w-20 md:w-40 m-1 md:m-5 h-1 bg-slate-600'/>
+                <hr className='w-20 md:w-40 m-1 md:m-5 bg-slate-900'/>
             </div>
 
             <div 
