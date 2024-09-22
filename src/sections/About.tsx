@@ -54,12 +54,12 @@ export default function About() {
 
 
   return (
-    <div className='mt-24 flex '>
+    <div className=' flex '>
         <div 
             className={`p-10 flex flex-col justify-center items-center transition-opacity duration-1000 ${isTitleVisible ? 'opacity-100' : 'opacity-0'}`}
             ref={titleRef}
         >
-            <div className='flex items-center'>
+            <div className='flex items-center mt-24'>
                 <hr className='w-20 md:w-40 m-1 md:m-5 bg-slate-600'/>
                 
                     <h3 

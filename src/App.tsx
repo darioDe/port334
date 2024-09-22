@@ -2,7 +2,7 @@ import './App.css';
 import { Header } from './sections/Header';
 import { MatrixBackground } from './background/MatrixBackground';
 import About from './sections/About';
-import Proyects from './sections/Proyects';
+import Proyects from './sections/Projects';
 import NavBar from './components/NavBar';
 import Contact from './sections/Contact';
 
@@ -14,7 +14,7 @@ const App = () => {
       <MatrixBackground />
       <NavBar />
       <Header />
-      <div className=' bg-zinc-950 lg:m-16 rounded-xl border-4 border-slate-900'>
+      <div className=' bg-zinc-950 rounded-xl'>
         <About />
         <Proyects />
         <Contact />
