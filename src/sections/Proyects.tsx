@@ -1,9 +1,8 @@
-import { useState } from 'react'
 import {  useLang } from "../context/LangContext";
 import Card from '../components/Card';
-import arrwpUp from '../assets/arrow-up.svg'
 import movieSearcher from '../assets/movie-searcher.png'
-import ProjectProps from '../types/Projects';
+import ProjectProps from '../types/Projects'
+;
 
 
 
