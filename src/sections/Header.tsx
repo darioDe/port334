@@ -19,14 +19,14 @@ export const Header: React.FC = () => {
             <div className="flex flex-col justify-between items-center flex-grow">
                 <div className="flex flex-col items-center justify-center flex-grow">
                     <h1 
-                        className='text-center text-8xl md:text-7xl lg:text-9xl mb-3 fade-in-left text-slate-700'
+                        className='text-center text-8xl md:text-7xl lg:text-9xl mb-3 fade-in-left text-slate-200'
                     > 
-                        RUBEN <span className="hidden md:inline"> </span>
+                        Ruben <span className="hidden md:inline"> </span>
                         <br className="block md:hidden" />
-                         DUARTE 
+                         Duarte 
                     </h1>
                     <h2 
-                        className='text-2xl md:text-4xl lg:text-6xl font-semibold fade-in-right text-slate-900'
+                        className='text-2xl md:text-4xl lg:text-6xl font-semibold fade-in-right text-slate-200'
                     >
                         {lang === 'spanish' ? 
                             <>  

@@ -54,20 +54,20 @@ export default function About() {
 
 
   return (
-    <div className='mt-24 flex'>
+    <div className='mt-24 flex '>
         <div 
             className={`p-10 flex flex-col justify-center items-center transition-opacity duration-1000 ${isTitleVisible ? 'opacity-100' : 'opacity-0'}`}
             ref={titleRef}
         >
             <div className='flex items-center'>
-                <hr className='w-20 md:w-40 m-1 md:m-5 bg-slate-900'/>
+                <hr className='w-20 md:w-40 m-1 md:m-5 bg-slate-600'/>
                 
                     <h3 
-                        className='text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900'
+                        className='text-2xl md:text-3xl lg:text-4xl font-bold text-slate-200'
                     >
                         {lang === 'spanish' ? 'Sobre Mi' : 'About Me'}
                     </h3>
-                <hr className='w-20 md:w-40 m-1 md:m-5 bg-slate-900'/>
+                <hr className='w-20 md:w-40 m-1 md:m-5 bg-slate-600'/>
             </div>
 
             <div 
@@ -75,7 +75,7 @@ export default function About() {
                 ref={textRef}
             >
                 <div className='lg:w-1/2 text- md:text-start'>
-                    <p className='m-2 text-slate-900'>
+                    <p className='m-2 text-slate-200'>
                         {lang === 'spanish' ? (
                             <>
                             Soy un <span className="font-bold">desarrollador frontend</span> autodidacta con pasión por crear aplicaciones web intuitivas y funcionales. Manejo principalmente <span className="font-bold">JavaScript</span> y su ecosistema, trabajando con <span className="font-bold">React</span>, <span className="font-bold">TypeScript</span> y <span className="font-bold">Tailwind</span> para desarrollar interfaces modernas y eficientes. Me considero un eterno aprendiz, siempre explorando nuevas tecnologías para mejorar mis habilidades y ofrecer mejores soluciones.
@@ -87,7 +87,7 @@ export default function About() {
                         )}
                     </p>
 
-                    <p className='m-2 text-slate-900'>
+                    <p className='m-2 text-slate-200'>
                         {lang === 'spanish' ? (
                             <>
                             Aunque todavía no he tenido experiencia laboral formal, he trabajado en varios proyectos personales que me han permitido practicar y <span className="font-bold">aplicar mis conocimientos</span>. Estos proyectos me han dado una sólida comprensión de los conceptos de desarrollo frontend, desde la maquetación responsiva hasta la gestión del estado en aplicaciones complejas.
@@ -99,7 +99,7 @@ export default function About() {
                         )}
                     </p>
 
-                    <p className='m-2 text-slate-900'>
+                    <p className='m-2 text-slate-200'>
                         {lang === 'spanish' ? (
                             <>
                             Mi enfoque está en escribir <span className="font-bold">código limpio, reutilizable y escalable</span>, mientras sigo las mejores prácticas del sector. Siempre busco aprender algo nuevo y llevar mis proyectos al siguiente nivel. Estoy emocionado por empezar mi carrera profesional y poner en práctica todo lo que he aprendido hasta ahora.

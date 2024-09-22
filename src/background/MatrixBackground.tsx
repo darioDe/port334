@@ -22,18 +22,18 @@ export const MatrixBackground: React.FC = () => {
         window.addEventListener('resize', resizeCanvas)
         resizeCanvas()
 
-        const columns = canvas.width / 20
+        const columns = canvas.width / 19
         const drops: number[] = new Array(Math.floor(columns)).fill(1)
 
         const getColor = () => {
-            const baseGray = 200
-            const variance = 20
+            const baseGray = 100
+            const variance = 50
             const gray = baseGray - Math.random() * variance
             return `rgba(${gray}, ${gray}, ${gray}, 0.8)`
         }
 
         const draw = () => {
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.05)'
+        ctx.fillStyle = 'rgba(24, 24, 27, 0.05'
         ctx.fillRect(0, 0, canvas.width, canvas.height)
 
         for (let i = 0; i < drops.length; i++) {
@@ -64,7 +64,7 @@ export const MatrixBackground: React.FC = () => {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 w-full h-full"
-      style={{ zIndex: -1 }}
+      style={{ zIndex: -1, background: "#18181b" }}
     />
   )
 }

@@ -31,8 +31,8 @@ const NavBar = () => {
   }, [])
 
   return (
-    <div className={`fixed bottom-4 left-0   right-0 flex justify-center transition-all duration-300 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'}`}>
-      <nav className="bg-black bg-opacity-50 rounded-full shadow-lg overflow-hidden">
+    <div className={`fixed bottom-4 left-0   right-0 flex justify-center transition-all duration-300 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'} z-50`}>
+      <nav className="bg-black rounded-full shadow-lg overflow-hidden border-4 border-slate-900">
         <ul className={`flex items-center justify-center ${isDesktop ? 'space-x-32 px-8' : 'space-x-10 px-4'} py-3`}>
           <li>
             <a href="/" className="block transition-opacity duration-300 hover:opacity-70">
