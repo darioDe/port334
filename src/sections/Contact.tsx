@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback, useRef, memo } from 'react'
 
 interface FormState {
   name: string;
@@ -7,77 +7,92 @@ interface FormState {
   comment: string;
 }
 
+const InputField = memo(({ name, label, type = 'text', value, onChange }: {
+  name: string;
+  label: string;
+  type?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => (
+  <div className="relative mb-6 group">
+    <input
+      type={type}
+      id={name}
+      name={name}
+      value={value}
+      onChange={onChange}
+      className="w-full bg-transparent border-b border-white text-white focus:outline-none peer pt-6"
+      placeholder=" "
+    />
+    <label
+      htmlFor={name}
+      className={`absolute left-0 text-white transition-all duration-300 
+        ${value ? '-top-1 text-xs opacity-70' : 'top-6 text-base opacity-100'}
+        peer-focus:-top-1 peer-focus:text-xs peer-focus:opacity-70`}
+    >
+      {label}
+    </label>
+  </div>
+))
+
+const TextAreaField = memo(({ name, label, value, onChange }: {
+  name: string;
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}) => (
+  <div className="relative mb-6 group">
+    <textarea
+      id={name}
+      name={name}
+      value={value}
+      onChange={onChange}
+      className="w-full bg-transparent border-b border-white text-white focus:outline-none resize-none peer pt-6"
+      rows={4}
+      placeholder=" "
+    />
+    <label
+      htmlFor={name}
+      className={`absolute left-0 text-white transition-all duration-300 
+                  peer-focus:-top-1 peer-focus:text-xs peer-focus:opacity-70
+                  peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-placeholder-shown:opacity-100
+                  ${value ? '-top-1 text-xs opacity-70' : 'top-6 text-base opacity-100'} peer-focus:-top-1 peer-focus:text-xs peer-focus:opacity-70`}
+    >
+      {label}
+    </label>
+  </div>
+))
+
 export default function Contact() {
-  const [formState, setFormState] = useState<FormState>({
+  const formRef = useRef<FormState>({
     name: '',
     email: '',
     subject: '',
     comment: ''
-  })
+  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const [, forceUpdate] = useState({});
+
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormState(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
+    formRef.current[name as keyof FormState] = value;
+    forceUpdate({});
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    console.log('Form submitted:', formState)
+    console.log('Form submitted:', formRef.current)
     // Here you would typically send the form data to your server
   }
-
-  const InputField: React.FC<{ name: keyof FormState; label: string; type?: string }> = ({ name, label, type = 'text' }) => (
-    <div className="relative mb-6 group">
-      <input
-        type={type}
-        id={name}
-        name={name}
-        value={formState[name]}
-        onChange={handleChange}
-        className="w-full bg-transparent border-b border-white text-white focus:outline-none peer pt-6"
-        placeholder=" "
-      />
-      <label
-        htmlFor={name}
-        className={`absolute left-0 text-white transition-all duration-300 
-          ${formState[name] ? '-top-1 text-xs opacity-70' : 'top-6 text-base opacity-100'}
-          peer-focus:-top-1 peer-focus:text-xs peer-focus:opacity-70`}
-      >
-        {label}
-      </label>
-    </div>
-  )
 
   return (
     <div className="min-h-screen text-white p-6 flex flex-col justify-center">
       <h1 className="text-4xl font-bold mb-8 text-center">CONTACTO</h1>
       <form onSubmit={handleSubmit} className="max-w-md mx-auto w-full">
-        <InputField name="name" label="NOMBRE COMPLETO" />
-        <InputField name="email" label="CORREO" type="email" />
-        <InputField name="subject" label="ASUNTO" />
-        <div className="relative mb-6 group">
-          <textarea
-            id="comment"
-            name="comment"
-            value={formState.comment}
-            onChange={handleChange}
-            className="w-full bg-transparent border-b border-white text-white focus:outline-none resize-none peer pt-6"
-            rows={4}
-            placeholder=" "
-          />
-          <label
-            htmlFor="comment"
-            className={`absolute left-0 top-6 text-white transition-all duration-300 
-                        peer-focus:-top-1 peer-focus:text-xs peer-focus:opacity-70
-                        peer-placeholder-shown:top-6 peer-placeholder-shown:text-base peer-placeholder-shown:opacity-100
-                        ${formState.comment ? '-top-1 text-xs opacity-70' : 'top-6'}`}
-          >
-            COMENTARIO
-          </label>
-        </div>
+        <InputField name="name" label="NOMBRE COMPLETO" value={formRef.current.name} onChange={handleChange} />
+        <InputField name="email" label="CORREO" type="email" value={formRef.current.email} onChange={handleChange} />
+        <InputField name="subject" label="ASUNTO" value={formRef.current.subject} onChange={handleChange} />
+        <TextAreaField name="comment" label="COMENTARIO" value={formRef.current.comment} onChange={handleChange} />
         <button
           type="submit"
           className="w-full bg-white text-black py-3 rounded-full font-bold mt-6 hover:bg-gray-200 transition-colors"
