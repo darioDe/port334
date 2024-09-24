@@ -1,4 +1,5 @@
-import {  useLang } from "../context/LangContext";
+import { useState, useEffect, useRef } from "react";
+import { useLang } from "../context/LangContext";
 import Card from '../components/Card';
 import movieSearcher from '../assets/movie-searcher.png'
 import ProjectProps from '../types/Projects'
@@ -46,13 +47,42 @@ const projects: ProjectProps[] = [
 ]
 
 const Projects = () => {
+  const [isTitleVisible, setIsTitleVisible ] = useState<boolean>(false);
 
   const { lang } = useLang();
+
+  const titleRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver (
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const target = entry.target as HTMLElement;
+                    if (target === titleRef.current) {
+                        setIsTitleVisible(true);
+                    }
+                    observer.unobserve(entry.target)
+                }
+            });
+        },
+        { threshold: 0.7 }
+    );
+
+    if (titleRef.current) observer.observe(titleRef.current);
+
+    return () => {
+        if (titleRef.current) observer.unobserve(titleRef.current);
+    };
+}, [])
 
 
   return (
     <div className='mt-24 flex flex-col items-center justify-center'>
-        <div className='flex items-center'>             
+        <div 
+          className={`flex items-center mb-16 transition-opacity duration-1000 ${isTitleVisible ? 'opacity-100' : 'opacity-0'}`}
+          ref={titleRef}
+        >            
             <hr className='w-20 md:w-40 m-1 md:m-5 bg-slate-900'/>
                 <h3 
                     className='text-2xl md:text-3xl lg:text-4xl font-bold text-slate-200'

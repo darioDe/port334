@@ -14,11 +14,9 @@ const App = () => {
       <MatrixBackground />
       <NavBar />
       <Header />
-      <div className=' bg-zinc-950 rounded-xl'>
-        <About />
-        <Proyects />
-        <Contact />
-      </div>
+      <About />
+      <Proyects />
+      <Contact />
     </div>
   )
 }
