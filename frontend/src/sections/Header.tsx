@@ -1,4 +1,3 @@
-import langIcon from '../assets/lang.svg'
 import linkedin from '../assets/in.svg';
 import github from '../assets/github.svg';
 import { Toggle } from "../components/Toggle";
@@ -10,23 +9,22 @@ export const Header: React.FC = () => {
         <header className='w-full h-screen flex flex-col'>
              <div className="flex justify-end p-2 gap-1 fade-in">
                 <Toggle 
-                    label='spanish'
                     context={{ value: lang,toggle: toggleLang }}
-                    icon={langIcon}
+                    icon={'ES | EN'}
                 />
             </div >
 
             <div className="flex flex-col justify-between items-center flex-grow">
                 <div className="flex flex-col items-center justify-center flex-grow">
                     <h1 
-                        className='text-center text-8xl md:text-7xl lg:text-9xl mb-3 fade-in-left text-slate-200'
+                        className='text-center text-8xl md:text-7xl lg:text-9xl mb-3 fade-in-left text-white'
                     > 
-                        Ruben <span className="hidden md:inline"> </span>
+                        RUBEN <span className="hidden md:inline"> </span>
                         <br className="block md:hidden" />
-                         Duarte 
+                         DUARTE 
                     </h1>
                     <h2 
-                        className='text-2xl md:text-4xl lg:text-6xl font-semibold fade-in-right text-slate-200'
+                        className='text-2xl md:text-4xl lg:text-6xl font-semibold fade-in-right text-white'
                     >
                         {lang === 'spanish' ? 
                             <>  

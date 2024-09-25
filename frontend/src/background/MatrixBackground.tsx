@@ -42,7 +42,7 @@ export const MatrixBackground: React.FC = () => {
             ctx.font = '15px monospace'
             ctx.fillText(text, i * 20, drops[i] * 20)
 
-            if (drops[i] * 20 > canvas.height && Math.random() > 0.975) {
+            if (drops[i] * 20 > canvas.height && Math.random() > 0.990) {
             drops[i] = 0
             }
 
