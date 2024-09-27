@@ -32,25 +32,25 @@ const NavBar = () => {
 
   return (
     <div className={`fixed bottom-4 left-0   right-0 flex justify-center transition-all duration-300 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-full'} z-50`}>
-      <nav className="bg-black rounded-full shadow-lg overflow-hidden border-4 border-emerald-600">
+      <nav className="bg-black rounded-full shadow-lg overflow-hidden shadow-emerald-300">
         <ul className={`flex items-center justify-center ${isDesktop ? 'space-x-32 px-8' : 'space-x-10 px-4'} py-3`}>
           <li>
-            <a href="/" className="block transition-opacity duration-300 hover:opacity-70">
+            <a href="#home" className="block transition-opacity duration-300 hover:opacity-70">
               <img src={home} alt="Inicio" className="w-6 h-6" />
             </a>
           </li>
           <li>
-            <a href="/about" className="block transition-opacity duration-300 hover:opacity-70">
+            <a href="#about" className="block transition-opacity duration-300 hover:opacity-70">
               <img src={user} alt="Acerca de" className="w-7 h-7" />
             </a>
           </li>
           <li>
-            <a href="/projects" className="block transition-opacity duration-300 hover:opacity-70">
+            <a href="#projects" className="block transition-opacity duration-300 hover:opacity-70">
               <img src={code} alt="Proyectos" className="w-7 h-7" />
             </a>
           </li>
           <li>
-            <a href="/contact" className="block transition-opacity duration-300 hover:opacity-70">
+            <a href="#contact" className="block transition-opacity duration-300 hover:opacity-70">
               <img src={mail} alt="Contacto" className="w-6 h-6" />
             </a>
           </li>

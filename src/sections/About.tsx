@@ -3,13 +3,16 @@ import {  useLang } from "../context/LangContext";
 import IconTecnologies from "../components/IconTecnologies";
 import html5 from '../assets/html5.svg';
 import css3 from '../assets/css3.svg';
-import javascript from '../assets/javascript.svg';
+import javascript from '../assets/js.svg';
 import reactjs from '../assets/react.svg';
 import typescript from '../assets/typescript.svg';
 import tailwind from '../assets/tailwind.svg';
 import bootstrap from '../assets/bootstrap.svg';
 import next from '../assets/next.svg';
 import node from '../assets/node.svg';
+import mongo from '../assets/mongo.svg';
+import express from '../assets/express.svg';
+import python from '../assets/python.svg';
 
 export default function About() {
     const [isTitleVisible, setIsTitleVisible ] = useState<boolean>(false);
@@ -54,12 +57,12 @@ export default function About() {
 
 
   return (
-    <div className=' flex '>
+    <div id="about" className=' flex '>
         <div 
             className={`p-10 flex flex-col justify-center items-center transition-opacity duration-1000 ${isTitleVisible ? 'opacity-100' : 'opacity-0'}`}
             ref={titleRef}
         >
-            <div className='flex items-center mt-24'>
+            <div className='flex items-center '>
                     <h3 
                         className='text-5xl font-bol text-white'
                     >
@@ -122,6 +125,9 @@ export default function About() {
                     <IconTecnologies icon={bootstrap} name={'BOOTSTRAP'}/>
                     <IconTecnologies icon={next} name={'NEXT'}/>
                     <IconTecnologies icon={node} name={'NODE'}/>
+                    <IconTecnologies icon={express} name={'EXPRESS'}/>
+                    <IconTecnologies icon={mongo} name={'MONGODB'}/>
+                    <IconTecnologies icon={python} name={'PYTHON'}/>
                 </div>
             </div>
         </div>

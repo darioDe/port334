@@ -78,7 +78,7 @@ const Projects = () => {
 
 
   return (
-    <div className='mt-10 flex flex-col items-center justify-center'>
+    <div id="projects" className='mt-10 flex flex-col items-center justify-center'>
         <div 
           className={`flex items-center transition-opacity duration-1000 ${isTitleVisible ? 'opacity-100' : 'opacity-0'}`}
           ref={titleRef}

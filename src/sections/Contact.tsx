@@ -73,7 +73,7 @@ export default function Contact() {
   }
 
   return (
-    <div className="min-h-screen text-white p-6 flex flex-col justify-center mt-32">
+    <div id='contact' className="min-h-screen text-white p-6 flex flex-col justify-center mt-32">
       <h3 className="text-5xl mb-8 md:mb-20 text-center">CONTACTO</h3>
       <form onSubmit={handleSubmit} className="max-w-3xl mx-auto w-full">
         <InputField

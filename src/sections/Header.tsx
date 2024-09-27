@@ -1,91 +1,111 @@
+import React, { useState, useEffect } from 'react';
 import linkedin from '../assets/in.svg';
 import github from '../assets/github.svg';
+import download from '../assets/download.svg';
 import { Toggle } from "../components/Toggle";
-import {  useLang } from "../context/LangContext";
+import { useLang } from "../context/LangContext";
+
 export const Header: React.FC = () => {
-    const { lang, toggleLang} = useLang();
+  const { lang, toggleLang } = useLang();
 
-    return (
-        <header className='w-full h-screen flex flex-col'>
-             <div className="flex justify-end p-2 gap-1 fade-in">
-                <Toggle 
-                    context={{ value: lang,toggle: toggleLang }}
-                    icon={'ES | EN'}
-                />
-            </div >
+  const [showH1, setShowH1] = useState(false);
+  const [showSecondH2, setShowSecondH2] = useState(false);
+  const [showOtherComponents, setShowOtherComponents] = useState(false);
 
-            <div className="flex flex-col justify-between items-center flex-grow">
-                <div className="flex flex-col items-center justify-center flex-grow">
-                    <h1 
-                        className='text-center text-8xl md:text-7xl lg:text-9xl mb-3 fade-in-left text-white'
-                    > 
-                        RUBEN <span className="hidden md:inline"> </span>
-                        <br className="block md:hidden" />
-                         DUARTE 
-                    </h1>
-                    <h2 
-                        className='text-3xl md:text-4xl lg:text-6xl font-semibold fade-in-right text-white'
-                    >
-                        {lang === 'spanish' ? 
-                            <>  
-                                Desarrollador Frontend
-                            </>  : 
-                            <>
-                                Frontend Developer
-                            </>
-                        }
-                    </h2>
-                </div>
+  useEffect(() => {
+    const h1Timeout = setTimeout(() => setShowH1(true), 1500);
+    const h2Timeout = setTimeout(() => setShowSecondH2(true), 3000);
+    const otherComponentsTimeout = setTimeout(() => setShowOtherComponents(true), 4500);
 
-                <div className="flex flex-col items-center gap-3 mb-20">
-                    {/* <div 
-                        className={`fade-in inline-flex items-center border-2 border-green-500 text-green-500 font-semibold py-2 px-4 rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 ${theme === 'dark-theme' ?'hover:bg-black' : 'hover:bg-white'}`}
-                    >
-                        <a 
-                            href=""
-                            download='CVRubenDuarte.pdf'
-                            className='flex items-center space-x-2'                
-                        >
-                            <img src={download} alt="" className="w-6 h-6" />
-                            <p>
-                                {lang === 'spanish' ?
-                                    'Descarga mi CV' 
-                                    : 
-                                    'Download my CV'
-                                } 
-                            </p>
-                        </a>
-                    </div> */}
+    return () => {
+      clearTimeout(h1Timeout);
+      clearTimeout(h2Timeout);
+      clearTimeout(otherComponentsTimeout);
+    };
+  }, []);
 
-                    <div className='flex gap-2 fade-in'>
-                        <a 
-                            className="w-12
-                             h-12 flex items-center justify-center rounded-full cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110" 
-                            href="http://" 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                        >
-                             <p className="absolute bottom-9 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-y-[-12px] text-white text-sm">
-                                 LinkedIn
-                            </p>
-                            <img className="p-2" src={linkedin} alt="" />
-                        </a>
-                        <a 
-                            className="w-11 h-12 flex items-center justify-center rounded-full cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110"
-                            href="http://"
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                        >
-                            <p className="absolute bottom-9 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:translate-y-[-12px] text-white text-sm">
-                                Github
-                            </p>
-                            <img className="p-1" src={github} alt="" />
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </header>
-                
-        
-    )
-}
+  const firstH2Text = lang === 'spanish' ? 'Hola, soy' : "Hello, I'm";
+  const h1Text = 'DARIO DUARTE';
+  const secondH2Text = lang === 'spanish' ? 'Desarrollador Frontend' : 'Frontend Developer';
+
+  return (
+    <header id="home" className='w-full h-screen flex flex-col'>
+      <div className="flex justify-end p-2 gap-1 fade-in">
+        <Toggle 
+          context={{ value: lang, toggle: toggleLang }}
+          icon={'ES | EN'}
+        />
+      </div>
+
+      <div className="flex flex-col justify-center items-center flex-grow">
+        {/* Primer H2 con fade-in */}
+        <h2 
+          className={`text-3xl md:text-4xl lg:text-6xl text-white text-center transition-opacity duration-1000 ${
+            showH1 ? 'opacity-100 visible' : 'opacity-0 invisible'}`
+          }
+        >
+          {firstH2Text}
+        </h2>
+
+        {/* H1 con fade-in */}
+        <h1 
+          className={`text-center text-8xl md:text-7xl lg:text-9xl mb-2 text-emerald-600 transition-opacity duration-1000 ${
+            showSecondH2 ? 'opacity-100 visible' : 'opacity-0 invisible'}`
+          }
+        >
+          {h1Text}
+        </h1>
+
+        {/* Segundo H2 con fade-in */}
+        <h2 
+          className={`text-3xl md:text-4xl lg:text-6xl text-white text-center transition-opacity duration-1000 ${
+            showSecondH2 ? 'opacity-100 visible' : 'opacity-0 invisible'}`
+          }
+        >
+          {secondH2Text}
+        </h2>
+
+        {/* Otros componentes: Íconos sociales y botón de descarga */}
+        <div className={`flex flex-col items-center gap-6 mt-8 transition-opacity duration-1000 ${showOtherComponents ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+          <div className='flex gap-4'>
+            <a 
+              className="w-12 h-12 flex items-center justify-center rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-md shadow-emerald-300 hover:shadow-lg hover:shadow-emerald-500 relative" 
+              href="https://www.linkedin.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <img className="p-1" src={linkedin} alt="LinkedIn" />
+            </a>
+            
+            <a 
+              className="w-12 h-12 flex items-center justify-center rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-md shadow-emerald-300 hover:shadow-lg hover:shadow-emerald-500 relative"
+              href="https://www.github.com"
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <img className="p-1" src={github} alt="GitHub" />
+            </a>
+          </div>
+
+          <div 
+            className="shadow-md shadow-emerald-300 inline-flex items-center text-white font-semibold py-2 px-4 rounded-full cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg hover:shadow-emerald-500"
+          >
+            <a 
+              href="/path/to/cv.pdf"
+              download='CV_DarioDuarte.pdf'
+              className='flex items-center space-x-2'                
+            >
+              <img src={download} alt="Descargar CV" className="w-6 h-6" />
+              <p>
+                {lang === 'spanish' ? 'Descarga mi CV' : 'Download my CV'}
+              </p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+
+
