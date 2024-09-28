@@ -1,69 +1,32 @@
-import { useState, useEffect, useRef } from "react"
 import ProjectProps from "../types/Projects";
 
 export default function Card({ project }: { project: ProjectProps }) {
-  const [isHovered, setIsHovered] = useState(false);
-  const [isCardVisible, setIsCardVisible ] = useState<boolean>(false);
-
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver (
-        (entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const target = entry.target as HTMLElement;
-                    if (target === cardRef.current) {
-                      setIsCardVisible(true)
-                    }
-
-                    observer.unobserve(entry.target)
-                }
-            });
-        },
-        { threshold: 0.6 }
-    );
-
-    if (cardRef.current) observer.observe(cardRef.current);
-
-    return () => {
-        if (cardRef.current) observer.unobserve(cardRef.current);
-    };
-}, [])
 
   return (
-    <div 
-      className={`relative bg-gray-800 rounded-lg overflow-hidden shadow-lg h-64 md:h-80 group transition-opacity duration-1000 ${isCardVisible ? 'opacity-100' : 'opacity-0'}`}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      ref={cardRef}
-    >
-      <img src={project.image} alt={project.title} className="w-full h-full " />
-      <div 
-        className={`absolute inset-0 bg-black bg-opacity-80 p-4 transition-transform duration-500 ${
-          isHovered ? 'translate-y-0' : 'translate-y-full'
-        } flex flex-col justify-center items-center gap-16`}
-      >
-        <div className="flex flex-col items-center">
-          <h4 className="text-2xl font-bold text-emerald-600 mb-2">{project.title}</h4>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {project.tags.map((tag, index) => (
-              <span key={index} className="text-white text- fmdont-medium px-2.5 py-0.5 underline">
-                {tag}
-              </span>
-            ))}
-          </div>
+    <div className="m-4 p-2 max-w-md shadow-lg shadow-blue-300 rounded-lg cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500">
+      <img className='rounded-lg' src={project.image} alt={project.title} />
+      
+      <div className="flex flex-col justify-center items-center p-2">
+        <h4 className="text-2xl font-bold text-white mb-2">{project.title}</h4>
+        
+        <div className="flex">
+          {project.tags.map((tag, index) => (
+            <span key={index} className="text-cyan-300 font-semibold px-2.5 py-0.5">
+              {tag.toUpperCase()}
+            </span>
+          ))}
         </div>
-        <div className="flex flex-col sm:flex-row gap-4">
+       
+        <div className="flex flex-col sm:flex-row gap-3 mt-2">
           <a
             href={project.codeUrl}
-            className="border-4 border-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 text-center transition-colors duration-300 rounded-full"
+            className="text-white text-center rounded-full shadow-md shadow-cyan-300 p-2 cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg hover:shadow-cyan-500"
           >
             CÓDIGO
           </a>
           <a
             href={project.deployUrl}
-            className="border-4 border-emerald-500 hover:bg-emerald-600 text-white font-bold py-2 px-4 text-center transition-colors duration-300 rounded-full"
+            className="text-white rounded-full shadow-md shadow-cyan-300 p-2 cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg hover:shadow-cyan-500"
           >
             DESPLIEGUE
           </a>

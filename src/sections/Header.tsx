@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
   }, []);
 
   const firstH2Text = lang === 'spanish' ? 'Hola, soy' : "Hello, I'm";
-  const h1Text = 'DARIO DUARTE';
+  const h1Text = 'Dario Duarte';
   const secondH2Text = lang === 'spanish' ? 'Desarrollador Frontend' : 'Frontend Developer';
 
   return (
@@ -40,7 +40,7 @@ export const Header: React.FC = () => {
       <div className="flex flex-col justify-center items-center flex-grow">
         {/* Primer H2 con fade-in */}
         <h2 
-          className={`text-3xl md:text-4xl lg:text-6xl text-white text-center transition-opacity duration-1000 ${
+          className={`text-3xl md:text-4xl lg:text-6xl text-white text-start transition-opacity duration-1000 ${
             showH1 ? 'opacity-100 visible' : 'opacity-0 invisible'}`
           }
         >
@@ -49,7 +49,7 @@ export const Header: React.FC = () => {
 
         {/* H1 con fade-in */}
         <h1 
-          className={`text-center text-8xl md:text-7xl lg:text-9xl mb-2 text-emerald-600 transition-opacity duration-1000 ${
+          className={`text-center text-8xl font-bold md:text-7xl lg:text-9xl mb-2 text-cyan-300 transition-opacity duration-1000 ${
             showSecondH2 ? 'opacity-100 visible' : 'opacity-0 invisible'}`
           }
         >
@@ -58,7 +58,7 @@ export const Header: React.FC = () => {
 
         {/* Segundo H2 con fade-in */}
         <h2 
-          className={`text-3xl md:text-4xl lg:text-6xl text-white text-center transition-opacity duration-1000 ${
+          className={`text-3xl md:text-4xl lg:text-6xl font-semibold text-white text-center transition-opacity duration-1000 ${
             showSecondH2 ? 'opacity-100 visible' : 'opacity-0 invisible'}`
           }
         >
@@ -69,7 +69,7 @@ export const Header: React.FC = () => {
         <div className={`flex flex-col items-center gap-6 mt-8 transition-opacity duration-1000 ${showOtherComponents ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
           <div className='flex gap-4'>
             <a 
-              className="w-12 h-12 flex items-center justify-center rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-md shadow-emerald-300 hover:shadow-lg hover:shadow-emerald-500 relative" 
+              className="w-12 h-12 flex items-center justify-center rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-md shadow-cyan-300 hover:shadow-lg hover:shadow-cyan-500 relative" 
               href="https://www.linkedin.com" 
               target="_blank" 
               rel="noopener noreferrer"
@@ -78,7 +78,7 @@ export const Header: React.FC = () => {
             </a>
             
             <a 
-              className="w-12 h-12 flex items-center justify-center rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-md shadow-emerald-300 hover:shadow-lg hover:shadow-emerald-500 relative"
+              className="w-12 h-12 flex items-center justify-center rounded-md cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 shadow-md shadow-cyan-300 hover:shadow-lg hover:shadow-cyan-500 relative"
               href="https://www.github.com"
               target="_blank" 
               rel="noopener noreferrer"
@@ -88,7 +88,7 @@ export const Header: React.FC = () => {
           </div>
 
           <div 
-            className="shadow-md shadow-emerald-300 inline-flex items-center text-white font-semibold py-2 px-4 rounded-full cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg hover:shadow-emerald-500"
+            className="shadow-md shadow-cyan-300 inline-flex items-center text-white font-semibold py-2 px-4 rounded-full cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg hover:shadow-cyan-500"
           >
             <a 
               href="/path/to/cv.pdf"

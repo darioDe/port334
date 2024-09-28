@@ -78,11 +78,11 @@ export default function About() {
                     <p className='m-2 md:m-4 text-white'>
                         {lang === 'spanish' ? (
                             <>
-                            Soy un <span className="font-bold  text-emerald-300">desarrollador frontend</span> autodidacta con pasión por crear aplicaciones web intuitivas y funcionales. Manejo principalmente <span className="font-bold text-emerald-300">JavaScript</span> y su ecosistema, trabajando con <span className="font-bold  text-emerald-300">React</span>, <span className="font-bold  text-emerald-300">TypeScript</span> y <span className="font-bold  text-emerald-300">Tailwind</span> para desarrollar interfaces modernas y eficientes. Me considero un eterno aprendiz, siempre explorando nuevas tecnologías para mejorar mis habilidades y ofrecer mejores soluciones.
+                            Soy un <span className="font-bold  text-cyan-300">desarrollador frontend</span> autodidacta con pasión por crear aplicaciones web intuitivas y funcionales. Manejo principalmente <span className="font-bold text-cyan-300">JavaScript</span> y su ecosistema, trabajando con <span className="font-bold  text-cyan-300">React</span>, <span className="font-bold  text-cyan-300">TypeScript</span> y <span className="font-bold  text-cyan-300">Tailwind</span> para desarrollar interfaces modernas y eficientes. Me considero un eterno aprendiz, siempre explorando nuevas tecnologías para mejorar mis habilidades y ofrecer mejores soluciones.
                             </>
                         ) : (
                             <>
-                            I'm a self-taught <span className="font-bold  text-emerald-300">frontend developer</span> with a passion for creating intuitive and functional web applications. I primarily work with <span className="font-bold  text-emerald-300">JavaScript</span> and its ecosystem, using <span className="font-bold  text-emerald-300">React</span>, <span className="font-bold  text-emerald-300">TypeScript</span>, and <span className="font-bold">Tailwind</span> to build modern and efficient interfaces. I'm a lifelong learner, always exploring new technologies to improve my skills and provide better solutions.
+                            I'm a self-taught <span className="font-bold  text-cyan-300">frontend developer</span> with a passion for creating intuitive and functional web applications. I primarily work with <span className="font-bold  text-cyan-300">JavaScript</span> and its ecosystem, using <span className="font-bold  text-cyan-300">React</span>, <span className="font-bold  text-cyan-300">TypeScript</span>, and <span className="font-bold">Tailwind</span> to build modern and efficient interfaces. I'm a lifelong learner, always exploring new technologies to improve my skills and provide better solutions.
                             </>
                         )}
                     </p>
@@ -90,11 +90,11 @@ export default function About() {
                     <p className='m-2 md:m-4 text-white'>
                         {lang === 'spanish' ? (
                             <>
-                            Aunque todavía no he tenido experiencia laboral formal, he trabajado en varios proyectos personales que me han permitido practicar y <span className="font-bold  text-emerald-300">aplicar mis conocimientos</span>. Estos proyectos me han dado una sólida comprensión de los conceptos de desarrollo frontend, desde la maquetación responsiva hasta la gestión del estado en aplicaciones complejas.
+                            Aunque todavía no he tenido experiencia laboral formal, he trabajado en varios proyectos personales que me han permitido practicar y <span className="font-bold  text-cyan-300">aplicar mis conocimientos</span>. Estos proyectos me han dado una sólida comprensión de los conceptos de desarrollo frontend, desde la maquetación responsiva hasta la gestión del estado en aplicaciones complejas.
                             </>
                         ) : (
                             <>
-                            Although I haven't had formal work experience yet, I've worked on several personal projects that have allowed me to practice and <span className="font-bold  text-emerald-300">apply my knowledge</span>. These projects have given me a solid understanding of frontend development concepts, from responsive layouts to state management in complex applications.
+                            Although I haven't had formal work experience yet, I've worked on several personal projects that have allowed me to practice and <span className="font-bold  text-cyan-300">apply my knowledge</span>. These projects have given me a solid understanding of frontend development concepts, from responsive layouts to state management in complex applications.
                             </>
                         )}
                     </p>
@@ -102,11 +102,11 @@ export default function About() {
                     <p className='m-2 md:m-4 text-white'>
                         {lang === 'spanish' ? (
                             <>
-                            Mi enfoque está en escribir <span className="font-bold  text-emerald-300">código limpio, reutilizable y escalable</span>, mientras sigo las mejores prácticas del sector. Siempre busco aprender algo nuevo y llevar mis proyectos al siguiente nivel. Estoy emocionado por empezar mi carrera profesional y poner en práctica todo lo que he aprendido hasta ahora.
+                            Mi enfoque está en escribir <span className="font-bold  text-cyan-300">código limpio, reutilizable y escalable</span>, mientras sigo las mejores prácticas del sector. Siempre busco aprender algo nuevo y llevar mis proyectos al siguiente nivel. Estoy emocionado por empezar mi carrera profesional y poner en práctica todo lo que he aprendido hasta ahora.
                             </>
                         ) : (
                             <>
-                            My focus is on writing <span className="font-bold  text-emerald-300">clean, reusable, and scalable code</span> while following industry best practices. I'm always looking to learn something new and take my projects to the next level. I'm excited to start my professional career and put everything I've learned into practice.
+                            My focus is on writing <span className="font-bold  text-cyan-300">clean, reusable, and scalable code</span> while following industry best practices. I'm always looking to learn something new and take my projects to the next level. I'm excited to start my professional career and put everything I've learned into practice.
                             </>
                         )}
                     </p>

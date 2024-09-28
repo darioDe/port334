@@ -108,7 +108,7 @@ export default function Contact() {
         <div className="flex justify-center mt-6">
           <button
             type="submit"
-            className="w-full md:w-1/2 bg-emerald-500 hover:bg-emerald-600 text-white py-2 rounded-full font-bold mt-6 
+            className="w-full md:w-1/2 shadow-md shadow-cyan-300 hover:shadow-lg hover:shadow-cyan-500 text-white py-2 rounded-full font-bold mt-6 
             transition-colors text-lg"
           >
             ENVIAR
@@ -116,8 +116,31 @@ export default function Contact() {
         </div>
       </form>
 
-      <div>
-        <h4> Detalles de contacto</h4>
+      <div className='flex flex-col w-full mt-12 mb-24'>
+        <h4 className='text-center font-semibold'> DETALLES DE CONTACTO </h4>
+
+        <div  className='flex flex-col'>
+          <div className='mt-8'>
+            <h5 className='font-semibold text-cyan-300'>EMAIL:</h5>
+            <p>rdduarte1811@gmail.com</p>
+          </div>
+
+          <div className='mt-8'>
+            <div>
+              <h5 className='font-semibold text-cyan-300'>TELÉFONO</h5>
+              <p>+541159117295</p>
+            </div>
+          </div>
+
+          <div>
+            <div className='mt-8'>
+              <h5 className='font-semibold text-cyan-300'>UBICACIÓN</h5>
+              <p> General San Martín, Buenos Aires</p>
+            </div>
+          </div>
+        </div>
+
+        
 
       </div>
     </div>
