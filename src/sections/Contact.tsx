@@ -1,6 +1,8 @@
 import React, { useState, useCallback, useRef } from 'react';
 import InputField from '../components/InputField'
 import TextAreaField from '../components/TextAreaField';
+import ContactInfo from '../components/ContactInfo';
+import { useLang } from '../context/LangContext';
 
 interface FormState {
   name: string;
@@ -10,6 +12,8 @@ interface FormState {
 }
 
 export default function Contact() {
+  const { lang } = useLang();
+
   const formRef = useRef<FormState>({
     name: '',
     email: '',
@@ -30,26 +34,33 @@ export default function Contact() {
     const newErrors: FormState = { name: '', email: '', subject: '', comment: '' };
     let isValid = true;
 
+    const errorName = lang === 'spanish' ? 'El nombre es obligatorio.' : 'Name is required.';
+    const errorEmail1 = lang === 'spanish' ? 'El correo es obligatorio.' : 'Mail is required.';
+    const errorEmail2 = lang === 'spanish' ? 'El correo no es válido.' : 'The mail is not valid';
+    const subjectError = lang === 'spanish' ? 'El asunto es obligatorio.' : 'Subject is required';
+    const commentError = lang === 'spanish' ? 'El comentario es obligatorio' : 'Comment are required'
+
+
     if (!formRef.current.name.trim()) {
-      newErrors.name = 'El nombre es obligatorio.';
+      newErrors.name = errorName;
       isValid = false;
     }
     
     if (!formRef.current.email.trim()) {
-      newErrors.email = 'El correo es obligatorio.';
+      newErrors.email = errorEmail1;
       isValid = false;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formRef.current.email)) {
-      newErrors.email = 'El correo no es válido.';
+      newErrors.email = errorEmail2;
       isValid = false;
     }
     
     if (!formRef.current.subject.trim()) {
-      newErrors.subject = 'El asunto es obligatorio.';
+      newErrors.subject = subjectError;
       isValid = false;
     }
     
     if (!formRef.current.comment.trim()) {
-      newErrors.comment = 'El comentario es obligatorio.';
+      newErrors.comment = commentError;
       isValid = false;
     }
 
@@ -72,9 +83,11 @@ export default function Contact() {
     }
   }
 
+  const firstH3 = lang === 'spanish' ? 'CONTACTO' : 'CONTACT';
+
   return (
     <div id='contact' className="min-h-screen text-white p-6 flex flex-col justify-center mt-32">
-      <h3 className="text-5xl mb-8 md:mb-20 text-center">CONTACTO</h3>
+      <h3 className="text-5xl mb-8 md:mb-20 text-center">{firstH3}</h3>
       <form onSubmit={handleSubmit} className="max-w-3xl mx-auto w-full">
         <InputField
           name="name"
@@ -108,41 +121,15 @@ export default function Contact() {
         <div className="flex justify-center mt-6">
           <button
             type="submit"
-            className="w-full md:w-1/2 shadow-md shadow-cyan-300 hover:shadow-lg hover:shadow-cyan-500 text-white py-2 rounded-full font-bold mt-6 
-            transition-colors text-lg"
+            className="w-full md:w-1/2 shadow-md shadow-cyan-300 hover:shadow-lg hover:shadow-cyan-500 text-white py-2 rounded-full font-bold mt-6 text-lg cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110"
           >
             ENVIAR
           </button>
         </div>
       </form>
 
-      <div className='flex flex-col w-full mt-12 mb-24'>
-        <h4 className='text-center font-semibold'> DETALLES DE CONTACTO </h4>
-
-        <div  className='flex flex-col'>
-          <div className='mt-8'>
-            <h5 className='font-semibold text-cyan-300'>EMAIL:</h5>
-            <p>rdduarte1811@gmail.com</p>
-          </div>
-
-          <div className='mt-8'>
-            <div>
-              <h5 className='font-semibold text-cyan-300'>TELÉFONO</h5>
-              <p>+541159117295</p>
-            </div>
-          </div>
-
-          <div>
-            <div className='mt-8'>
-              <h5 className='font-semibold text-cyan-300'>UBICACIÓN</h5>
-              <p> General San Martín, Buenos Aires</p>
-            </div>
-          </div>
-        </div>
-
-        
-
-      </div>
+      <ContactInfo />
+      
     </div>
   );
 }

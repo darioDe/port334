@@ -1,6 +1,8 @@
 import ProjectProps from "../types/Projects";
+import { useLang } from "../context/LangContext";
 
 export default function Card({ project }: { project: ProjectProps }) {
+  const { lang } = useLang();
 
   return (
     <div className="m-4 p-2 max-w-md shadow-lg shadow-blue-300 rounded-lg cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500">
@@ -22,13 +24,13 @@ export default function Card({ project }: { project: ProjectProps }) {
             href={project.codeUrl}
             className="text-white text-center rounded-full shadow-md shadow-cyan-300 p-2 cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg hover:shadow-cyan-500"
           >
-            CÓDIGO
+            {lang == 'spanish' ? 'CÓDIGO' : 'CODE'}
           </a>
           <a
             href={project.deployUrl}
             className="text-white rounded-full shadow-md shadow-cyan-300 p-2 cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:shadow-lg hover:shadow-cyan-500"
           >
-            DESPLIEGUE
+            {lang == 'spanish' ? 'DESPLIEGUE' : 'DEPLOY'}
           </a>
         </div>
       </div>
