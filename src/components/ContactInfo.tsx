@@ -1,10 +1,18 @@
 import { useState } from 'react';
 import copy from '../assets/copy.svg';
 import check from '../assets/check.svg'
+import { useLang } from '../context/LangContext';
 
 const ContactInfo = () => {
   const [emailCopySuccess, setEmailCopySuccess] = useState('');
   const [phoneCopySuccess, setPhoneCopySuccess] = useState('');
+
+  const { lang } = useLang();
+
+  const infoh4 = lang === 'spanish' ? 'INFORMACIÓN DE CONTACTO' : 'CONTACT INFO';
+  const infoEmail = lang === 'spanish' ? 'CORREO' : 'EMAIL';
+  const infoPhone = lang === 'spanish' ? 'ENVIAR' : 'SEND';
+  const location = lang === 'spanish' ? 'UBICACIÓN' : 'LOCATION'
 
   const emailCopyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
@@ -24,11 +32,11 @@ const ContactInfo = () => {
     <div className="flex flex-col mt-5">
 
         <div className='flex flex-col w-full mt-12 mb-24'>
-            <h4 className='text-center text-2xl font-semibold'> DETALLES DE CONTACTO </h4>
+            <h4 className='text-center text-2xl font-semibold'> { infoh4 } </h4>
 
             <div  className='flex flex-col md:flex-row md:justify-around'>
                 <div className='mt-8'>
-                    <h5 className='font-semibold text-cyan-300'>EMAIL:</h5>
+                    <h5 className='font-semibold text-cyan-300'>{ infoEmail }</h5>
                     <div className='flex'>
                         <p>rdduarte1811@gmail.com</p>
                         <button
@@ -45,7 +53,7 @@ const ContactInfo = () => {
                 </div>
 
                 <div className='mt-8'>
-                    <h5 className='font-semibold text-cyan-300'>TELÉFONO</h5>
+                    <h5 className='font-semibold text-cyan-300'>{infoPhone}</h5>
                     <div className='flex'>
                         <p>+541159117295</p>
                         <button
@@ -62,7 +70,7 @@ const ContactInfo = () => {
                 </div>
                 
                 <div className='mt-8'>
-                    <h5 className='font-semibold text-cyan-300'>UBICACIÓN</h5>
+                    <h5 className='font-semibold text-cyan-300'>{location}</h5>
                     <p> General San Martín, Buenos Aires</p>
                 </div>
             </div>

@@ -84,6 +84,11 @@ export default function Contact() {
   }
 
   const firstH3 = lang === 'spanish' ? 'CONTACTO' : 'CONTACT';
+  const nameLabel = lang === 'spanish' ? 'NOMBRE COMPLETO' : 'NAME & LASTNAME';
+  const emailLabel = lang === 'spanish' ? 'CORREO' : 'EMAIL';
+  const subjectLabel = lang === 'spanish' ? 'ASUNTO' : 'SUBJECT';
+  const messageLabel = lang === 'spanish' ? 'MENSAJE' : 'MESSAGE';
+  const sendForm = lang === 'spanish' ? 'ENVIAR' : 'SEND'
 
   return (
     <div id='contact' className="min-h-screen text-white p-6 flex flex-col justify-center mt-32">
@@ -91,14 +96,14 @@ export default function Contact() {
       <form onSubmit={handleSubmit} className="max-w-3xl mx-auto w-full">
         <InputField
           name="name"
-          label="NOMBRE COMPLETO"
+          label= {nameLabel}
           value={formRef.current.name}
           onChange={handleChange}
           error={errors.name}
         />
         <InputField
           name="email"
-          label="CORREO"
+          label={emailLabel}
           type="email"
           value={formRef.current.email}
           onChange={handleChange}
@@ -106,14 +111,14 @@ export default function Contact() {
         />
         <InputField
           name="subject"
-          label="ASUNTO"
+          label={subjectLabel}
           value={formRef.current.subject}
           onChange={handleChange}
           error={errors.subject}
         />
         <TextAreaField
           name="comment"
-          label="COMENTARIO"
+          label={messageLabel}
           value={formRef.current.comment}
           onChange={handleChange}
           error={errors.comment}
@@ -123,7 +128,9 @@ export default function Contact() {
             type="submit"
             className="w-full md:w-1/2 shadow-md shadow-cyan-300 hover:shadow-lg hover:shadow-cyan-500 text-white py-2 rounded-full font-bold mt-6 text-lg cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110"
           >
-            ENVIAR
+            {
+              sendForm
+            }
           </button>
         </div>
       </form>
