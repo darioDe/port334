@@ -103,6 +103,7 @@ export default function Contact() {
         }
       } catch (error) {
         console.error('Error:', error);
+        
       }
     }
   };
