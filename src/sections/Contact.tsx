@@ -88,7 +88,7 @@ export default function Contact() {
   
     if (validateForm()) {
       try {
-        const response = await fetch('../api/sendMail', {
+        const response = await fetch('../api/sendMail.js', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
