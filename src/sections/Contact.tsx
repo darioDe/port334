@@ -88,7 +88,7 @@ export default function Contact() {
   
     if (validateForm()) {
       try {
-        const response = await fetch('../api/sendMail.js', {
+        const response = await fetch('https://mail-sender-chi.vercel.app', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
