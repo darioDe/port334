@@ -60,13 +60,13 @@ const Projects = () => {
                 if (entry.isIntersecting) {
                     const target = entry.target as HTMLElement;
                     if (target === titleRef.current) {
-                        setIsTitleVisible(true);
-                    }
+                      setIsTitleVisible(true);
+                    } 
                     observer.unobserve(entry.target)
                 }
             });
         },
-        { threshold: 0.7 }
+        { threshold: 0.8}
     );
 
     if (titleRef.current) observer.observe(titleRef.current);
@@ -91,7 +91,7 @@ const Projects = () => {
             
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-20 mt-7  md:mt-20 p-3 ">
+        <div className={`grid lg:grid-cols-2 gap-10 lg:gap-20 mt-7 md:mt-20 p-3`}>
         {projects.map((project) => (
           <Card key={project.id} project={project} />
         ))}
