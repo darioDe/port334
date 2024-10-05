@@ -2,7 +2,7 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import InputField from '../components/InputField';
 import TextAreaField from '../components/TextAreaField';
 import ContactInfo from '../components/ContactInfo';
-import { useLang } from '../context/LangContext';
+import { useLang } from '../context/LangContext'; 
 
 interface FormState {
   name: string;
@@ -38,6 +38,7 @@ export default function Contact() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const contactInfoRef = useRef<HTMLDivElement>(null);
 
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // Estado del loader
   const [, forceUpdate] = useState({});
 
   // Función para manejar el cambio en los campos del formulario
@@ -85,29 +86,46 @@ export default function Contact() {
   // Función para manejar el envío del formulario
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
+
     if (validateForm()) {
-      try {
-        const response = await fetch('https://mail-sender-chi.vercel.app/sendMail', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formRef.current),
-        });
-        
-        if (response.ok) {
-          console.log('Email sent successfully');
-        } else {
-          console.error('Error sending email');
+        setIsSubmitting(true); // Activar loader
+
+        try {
+            const response = await fetch('https://mail-sender-chi.vercel.app/sendMail', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formRef.current),
+            });
+
+            if (response.ok) {
+                console.log('Email sent successfully');
+                // Aquí limpias el formulario
+                formRef.current = {
+                    name: '',
+                    email: '',
+                    subject: '',
+                    comment: ''
+                };
+                setErrors({
+                    name: '',
+                    email: '',
+                    subject: '',
+                    comment: ''
+                });
+            } else {
+                console.error('Error sending email');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        } finally {
+            setIsSubmitting(false); // Desactivar loader
+            forceUpdate({}); // Forzar el rerender para reflejar los cambios
         }
-      } catch (error) {
-        console.error('Error:', error);
-        
-      }
     }
-  };
-  
+};
+
 
   // Crear el observer de las animaciones
   useEffect(() => {
@@ -163,7 +181,7 @@ export default function Contact() {
       >
         {firstH3}
       </h3>
-      
+
       <form
         ref={formWrapperRef}
         onSubmit={handleSubmit}
@@ -200,13 +218,19 @@ export default function Contact() {
         />
 
         <div className="flex justify-center mt-6">
-          <button
-            ref={buttonRef}
-            type="submit"
-            className={`w-full md:w-1/2 shadow-md shadow-cyan-300 hover:shadow-lg hover:shadow-cyan-500 text-white py-2 rounded-full font-bold mt-6 text-lg cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 ${isButtonVisible ? 'opacity-100' : 'opacity-0'}`}
-          >
-            {sendForm}
-          </button>
+          {isSubmitting ? (
+            <div className="loader"> {/* Puedes personalizar este loader */}
+              <p>Sending...</p>
+            </div>
+          ) : (
+            <button
+              ref={buttonRef}
+              type="submit"
+              className={`w-full md:w-1/2 shadow-md shadow-cyan-300 hover:shadow-lg hover:shadow-cyan-500 text-white py-2 rounded-full font-bold mt-6 text-lg cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 ${isButtonVisible ? 'opacity-100' : 'opacity-0'}`}
+            >
+              {sendForm}
+            </button>
+          )}
         </div>
       </form>
 
@@ -216,7 +240,8 @@ export default function Contact() {
       >
         <ContactInfo />
       </div>
-    </div>
-  );
+   </div>
+  )
 }
+
 
