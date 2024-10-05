@@ -91,7 +91,7 @@ export default function Contact() {
         setIsSubmitting(true); // Activar loader
 
         try {
-            const response = await fetch('https://mail-sender-chi.vercel.app/sendMail', {
+            const response = await fetch('https://mail-sender-chi.vercel.app/nodemailer', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
