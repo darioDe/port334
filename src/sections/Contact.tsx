@@ -97,6 +97,7 @@ export default function Contact() {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formRef.current),
+                mode: 'no-cors',
             });
 
             if (response.ok) {
