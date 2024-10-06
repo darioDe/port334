@@ -94,7 +94,7 @@ export default function Contact() {
         try {
             await emailjs.send(
                 'service_flei6je',  // ID del servicio
-                'template_qx2hch9',  // ID de la plantilla
+                'contact-form',  // ID de la plantilla
                 {
                   name: formRef.current.name,
                   email: formRef.current.email,
