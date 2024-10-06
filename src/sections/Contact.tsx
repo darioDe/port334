@@ -91,13 +91,12 @@ export default function Contact() {
         setIsSubmitting(true); // Activar loader
 
         try {
-            const response = await fetch('https://mail-sender-chi.vercel.app/nodemailer-rutas', {
+            const response = await fetch('https://mail-sender-chi.vercel.app/nodemailer', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(formRef.current),
-                mode: 'no-cors',
             });
 
             if (response.ok) {
@@ -116,7 +115,7 @@ export default function Contact() {
                     comment: ''
                 });
             } else {
-                console.error('Error sending email');
+              console.error('Error sending email, Status:', response.status);
             }
         } catch (error) {
             console.error('Error:', error);
