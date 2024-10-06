@@ -2,7 +2,8 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import InputField from '../components/InputField';
 import TextAreaField from '../components/TextAreaField';
 import ContactInfo from '../components/ContactInfo';
-import { useLang } from '../context/LangContext'; 
+import { useLang } from '../context/LangContext';
+import emailjs from 'emailjs-com'
 
 interface FormState {
   name: string;
@@ -91,37 +92,26 @@ export default function Contact() {
         setIsSubmitting(true); // Activar loader
 
         try {
-            const response = await fetch('https://mail-sender-chi.vercel.app/nodemailer', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formRef.current),
-            });
+            await emailjs.send(
+                'service_flei6je',  // ID del servicio
+                'template_qx2hch9',  // ID de la plantilla
+                {
+                  name: formRef.current.name,
+                  email: formRef.current.email,
+                  subject: formRef.current.subject,
+                  comment: formRef.current.comment,
+                },     // Datos del formulario
+                '_J5h-PKfB08qNMPz6'       // ID de usuario proporcionado por EmailJS
+            );
 
-            if (response.ok) {
-                console.log('Email sent successfully');
-                // Aquí limpias el formulario
-                formRef.current = {
-                    name: '',
-                    email: '',
-                    subject: '',
-                    comment: ''
-                };
-                setErrors({
-                    name: '',
-                    email: '',
-                    subject: '',
-                    comment: ''
-                });
-            } else {
-              console.error('Error sending email, Status:', response.status);
-            }
+            console.log('Email sent successfully');
+            formRef.current = { name: '', email: '', subject: '', comment: '' };
+            setErrors({ name: '', email: '', subject: '', comment: '' });
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error sending email:', error);
         } finally {
-            setIsSubmitting(false); // Desactivar loader
-            forceUpdate({}); // Forzar el rerender para reflejar los cambios
+            setIsSubmitting(false);
+            forceUpdate({});
         }
     }
 };
