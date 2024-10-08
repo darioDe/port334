@@ -33,6 +33,7 @@ export default function Contact() {
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
   const [isButtonVisible, setIsButtonVisible] = useState<boolean>(false);
   const [isContactInfoVisible, setIsContactInfoVisible] = useState<boolean>(false);
+  const [successMessage, setSuccessMessage] = useState<boolean>(false);
 
   const titleRef = useRef<HTMLHeadingElement>(null);
   const formWrapperRef = useRef<HTMLFormElement>(null);
@@ -90,6 +91,7 @@ export default function Contact() {
 
     if (validateForm()) {
         setIsSubmitting(true); // Activar loader
+        setSuccessMessage(false);
 
         try {
             await emailjs.send(
@@ -105,6 +107,7 @@ export default function Contact() {
             );
 
             console.log('Email sent successfully');
+            setSuccessMessage(true); // Mostrar mensaje de éxito
             formRef.current = { name: '', email: '', subject: '', comment: '' };
             setErrors({ name: '', email: '', subject: '', comment: '' });
         } catch (error) {
@@ -112,6 +115,10 @@ export default function Contact() {
         } finally {
             setIsSubmitting(false);
             forceUpdate({});
+
+            // Ocultar mensaje de éxito después de 3 segundos
+            setTimeout(() => setSuccessMessage(false), 3000);
+
         }
     }
 };
@@ -162,6 +169,7 @@ export default function Contact() {
   const subjectLabel = lang === 'spanish' ? 'ASUNTO' : 'SUBJECT';
   const messageLabel = lang === 'spanish' ? 'MENSAJE' : 'MESSAGE';
   const sendForm = lang === 'spanish' ? 'ENVIAR' : 'SEND';
+  const successMessageText = lang === 'spanish' ? '¡El mensaje fue enviado con éxito!' : 'Message sent successfully!';
 
   return (
     <div id='contact' className="min-h-screen text-white p-6 flex flex-col justify-center mt-32">
@@ -209,9 +217,11 @@ export default function Contact() {
 
         <div className="flex justify-center mt-6">
           {isSubmitting ? (
-            <div className="loader"> {/* Puedes personalizar este loader */}
-              <p>Sending...</p>
+            <div className="flex justify-center items-center w-full h-full">
+              <div className="loader animate-spin"></div>
             </div>
+          ) : successMessage ? (
+            <p className="text-center text-green-500 font-bold mt-4">{successMessageText}</p>
           ) : (
             <button
               ref={buttonRef}
@@ -222,6 +232,7 @@ export default function Contact() {
             </button>
           )}
         </div>
+
       </form>
 
       <div
