@@ -215,13 +215,13 @@ export default function Contact() {
           error={errors.comment}
         />
 
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center mt-10">
           {isSubmitting ? (
             <div className="flex justify-center items-center w-full h-full">
-              <div className="loader animate-spin"></div>
+              <div className="loader animate-spin mt-10"></div>
             </div>
           ) : successMessage ? (
-            <p className="text-center text-green-500 font-bold mt-4">{successMessageText}</p>
+            <p className="text-center font-semibold text-cyan-300 mt-5">{successMessageText}</p>
           ) : (
             <button
               ref={buttonRef}

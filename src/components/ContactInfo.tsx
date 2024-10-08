@@ -11,7 +11,7 @@ const ContactInfo = () => {
 
   const infoh4 = lang === 'spanish' ? 'INFORMACIÓN DE CONTACTO' : 'CONTACT INFO';
   const infoEmail = lang === 'spanish' ? 'CORREO' : 'EMAIL';
-  const infoPhone = lang === 'spanish' ? 'ENVIAR' : 'SEND';
+  const infoPhone = lang === 'spanish' ? 'TELÉFONO' : 'PHONE';
   const location = lang === 'spanish' ? 'UBICACIÓN' : 'LOCATION'
 
   const emailCopyToClipboard = (text: string) => {

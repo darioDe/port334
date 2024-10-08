@@ -6,28 +6,31 @@ import mail from '../assets/mail.svg';
 import arrowUp from '../assets/arrow-up.svg';
 
 const NavBar = () => {
+  // States to control visibility, window size, active section, and if the user is at the bottom of the page
   const [isVisible, setIsVisible] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isAtBottom, setIsAtBottom] = useState(false);
 
+  // Function to check if the view is on desktop
   useEffect(() => {
     const checkIsDesktop = () => {
       setIsDesktop(window.innerWidth >= 1024);
     };
 
+    // Function to handle scroll events and update the active section, visibility, and bottom of page status
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const documentHeight = document.documentElement.scrollHeight;
       const windowHeight = window.innerHeight;
 
-      // Cambiar visibilidad de la barra de navegación
+      // Toggle the navbar visibility based on scroll position
       setIsVisible(scrollPosition > 150);
 
-      // Comprobar si estamos cerca del final de la página
+      // Check if the user is near the bottom of the page
       setIsAtBottom(scrollPosition + windowHeight >= documentHeight - 100);
 
-      // Actualizar sección activa basado en el scroll position
+      // Update the active section based on scroll position
       const sections = ['home', 'about', 'projects', 'contact'];
       sections.forEach((section) => {
         const sectionElement = document.getElementById(section);
@@ -44,13 +47,16 @@ const NavBar = () => {
       });
     };
 
+    // Initial checks on load
     checkIsDesktop();
     handleScroll();
 
+    // Add event listeners for resize and scroll events
     window.addEventListener('resize', checkIsDesktop);
     window.addEventListener('scroll', handleScroll);
 
     return () => {
+      // Cleanup event listeners on component unmount
       window.removeEventListener('resize', checkIsDesktop);
       window.removeEventListener('scroll', handleScroll);
     };
@@ -58,7 +64,7 @@ const NavBar = () => {
 
   return (
     <>
-      {/* Navbar */}
+      {/* NavBar */}
       <div
         className={`fixed bottom-4 left-0 right-0 flex justify-center transition-all duration-500 ease-in-out transform ${
           isVisible && !isAtBottom ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
@@ -137,7 +143,7 @@ const NavBar = () => {
         </nav>
       </div>
 
-      {/* Flecha de vuelta al inicio */}
+      {/* Arrow back to home */}
       <div
         className={`fixed bottom-10 right-10 z-50 transition-all duration-500 ease-in-out transform bg-black rounded-full p-2 shadow-lg shadow-blue-300 hover:shadow-blue-500 hover:scale-120 hover:shadow-xl ${
           isAtBottom ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
