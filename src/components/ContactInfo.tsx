@@ -4,16 +4,20 @@ import check from '../assets/check.svg'
 import { useLang } from '../context/LangContext';
 
 const ContactInfo = () => {
+  // States to manage success messages for copying email and phone
   const [emailCopySuccess, setEmailCopySuccess] = useState('');
   const [phoneCopySuccess, setPhoneCopySuccess] = useState('');
 
+  // Retrieve the current language from context
   const { lang } = useLang();
 
+  // Text labels based on the current language
   const infoh4 = lang === 'spanish' ? 'INFORMACIÓN DE CONTACTO' : 'CONTACT INFO';
   const infoEmail = lang === 'spanish' ? 'CORREO' : 'EMAIL';
   const infoPhone = lang === 'spanish' ? 'TELÉFONO' : 'PHONE';
   const location = lang === 'spanish' ? 'UBICACIÓN' : 'LOCATION'
 
+  // Function to copy email to clipboard and show success message
   const emailCopyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
       setEmailCopySuccess('copy');
@@ -21,6 +25,7 @@ const ContactInfo = () => {
     });
   };
 
+  // Function to copy phone to clipboard and show success message
   const phoneCopyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(() => {
       setPhoneCopySuccess('copy');

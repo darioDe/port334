@@ -3,31 +3,30 @@ import ProjectProps from "../types/Projects";
 import { useLang } from "../context/LangContext";
 
 export default function Card({ project }: { project: ProjectProps }) {
-  const [isCardVisible, setIsCardVisible] = useState<boolean>(false); // Nuevo estado para la visibilidad de la tarjeta
-  const cardRef = useRef<HTMLDivElement>(null); // Referencia para la tarjeta
-
-  const { lang } = useLang();
+  const [isCardVisible, setIsCardVisible] = useState<boolean>(false); // Track card visibility for animation
+  const cardRef = useRef<HTMLDivElement>(null); // Reference to the card element
+  const { lang } = useLang(); // Language context for button text
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            setIsCardVisible(true);
-            observer.unobserve(entry.target); // Deja de observar una vez visible
+            setIsCardVisible(true); // Trigger animation once card is visible
+            observer.unobserve(entry.target); // Stop observing once visible
           }
         });
       },
-      { threshold: 0.5 } // Ajusta el umbral para activar la animación
+      { threshold: 0.5 } // Trigger animation when 50% of the card is visible
     );
 
     if (cardRef.current) {
-      observer.observe(cardRef.current); // Observa la tarjeta
+      observer.observe(cardRef.current); // Observe the card
     }
 
     return () => {
       if (cardRef.current) {
-        observer.unobserve(cardRef.current); // Limpia el observador al desmontar
+        observer.unobserve(cardRef.current); // Cleanup observer on unmount
       }
     };
   }, []);
@@ -35,7 +34,7 @@ export default function Card({ project }: { project: ProjectProps }) {
   return (
     <div
       ref={cardRef}
-      className={`group transition-opacity duration-1000 ease-in-out transform ${isCardVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`} // Aplica animación de fade-in
+      className={`group transition-opacity duration-1000 ease-in-out transform ${isCardVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
     >
       <div className="m-4 p-2 max-w-md shadow-lg shadow-blue-300 rounded-lg cursor-pointer group transition-transform duration-300 ease-in-out transform hover:scale-110 hover:shadow-xl hover:shadow-blue-500">
         <img className='rounded-lg' src={project.image} alt={project.title} />
@@ -70,3 +69,4 @@ export default function Card({ project }: { project: ProjectProps }) {
     </div>
   );
 }
+

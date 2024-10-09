@@ -13,8 +13,9 @@ interface FormState {
 }
 
 export default function Contact() {
-  const { lang } = useLang();
+  const { lang } = useLang(); // Access the current language from context
 
+  // Use a ref to store form values
   const formRef = useRef<FormState>({
     name: '',
     email: '',
@@ -22,6 +23,7 @@ export default function Contact() {
     comment: ''
   });
 
+  // State to manage validation errors for the form fields
   const [errors, setErrors] = useState<FormState>({
     name: '',
     email: '',
@@ -29,38 +31,43 @@ export default function Contact() {
     comment: ''
   });
 
+  // States for animations and form submission feedback
   const [isTitleVisible, setIsTitleVisible] = useState<boolean>(false);
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
   const [isButtonVisible, setIsButtonVisible] = useState<boolean>(false);
   const [isContactInfoVisible, setIsContactInfoVisible] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<boolean>(false);
 
+  // Refs for animating specific elements when they are in view
   const titleRef = useRef<HTMLHeadingElement>(null);
   const formWrapperRef = useRef<HTMLFormElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const contactInfoRef = useRef<HTMLDivElement>(null);
 
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false); // Estado del loader
-  const [, forceUpdate] = useState({});
+  // State to control the loading indicator during form submission
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [, forceUpdate] = useState({}); // Trigger a re-render
 
-  // Función para manejar el cambio en los campos del formulario
+  // Function to handle input changes and update formRef
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     formRef.current[name as keyof FormState] = value;
-    forceUpdate({});
+    forceUpdate({}); // Forces the component to re-render
   }, []);
 
-  // Validación del formulario
+  // Form validation logic based on the current language
   const validateForm = () => {
     const newErrors: FormState = { name: '', email: '', subject: '', comment: '' };
     let isValid = true;
 
+    // Error messages in different languages
     const errorName = lang === 'spanish' ? 'El nombre es obligatorio.' : 'Name is required.';
     const errorEmail1 = lang === 'spanish' ? 'El correo es obligatorio.' : 'Mail is required.';
     const errorEmail2 = lang === 'spanish' ? 'El correo no es válido.' : 'The mail is not valid';
     const subjectError = lang === 'spanish' ? 'El asunto es obligatorio.' : 'Subject is required';
     const commentError = lang === 'spanish' ? 'El comentario es obligatorio' : 'Comment is required';
 
+    // Validation checks
     if (!formRef.current.name.trim()) {
       newErrors.name = errorName;
       isValid = false;
@@ -81,42 +88,43 @@ export default function Contact() {
       isValid = false;
     }
 
-    setErrors(newErrors);
+    setErrors(newErrors); // Update error state
     return isValid;
   };
 
-  // Función para manejar el envío del formulario
+  // Handle form submission using EmailJS API
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (validateForm()) {
-        setIsSubmitting(true); // Activar loader
+        setIsSubmitting(true); // Show loader
         setSuccessMessage(false);
 
         try {
             await emailjs.send(
-                'service_flei6je',  // ID del servicio
-                'contact-form',  // ID de la plantilla
+                'service_flei6je',  // Service ID from EmailJS
+                'contact-form',  // Template ID from EmailJS
                 {
                   name: formRef.current.name,
                   email: formRef.current.email,
                   subject: formRef.current.subject,
                   comment: formRef.current.comment,
                 },     // Datos del formulario
-                '_J5h-PKfB08qNMPz6'       // ID de usuario proporcionado por EmailJS
+                '_J5h-PKfB08qNMPz6'       // User ID from EmailJS
             );
 
             console.log('Email sent successfully');
-            setSuccessMessage(true); // Mostrar mensaje de éxito
+            setSuccessMessage(true); // Show success message
+            // Reset form after submission
             formRef.current = { name: '', email: '', subject: '', comment: '' };
             setErrors({ name: '', email: '', subject: '', comment: '' });
         } catch (error) {
             console.error('Error sending email:', error);
         } finally {
             setIsSubmitting(false);
-            forceUpdate({});
+            forceUpdate({}); // Force re-render
 
-            // Ocultar mensaje de éxito después de 3 segundos
+            // Hide success message after 3 seconds
             setTimeout(() => setSuccessMessage(false), 3000);
 
         }
@@ -124,7 +132,7 @@ export default function Contact() {
 };
 
 
-  // Crear el observer de las animaciones
+  // Intersection observer for triggering animations when elements are in view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -142,19 +150,21 @@ export default function Contact() {
               setIsContactInfoVisible(true);
             }
 
-            observer.unobserve(entry.target);
+            observer.unobserve(entry.target); // Stop observing after animation triggers
           }
         });
       },
-      { threshold: 0.7 }
+      { threshold: 0.7 } // Trigger when 70% of the element is visible
     );
 
+    // Start observing elements
     if (titleRef.current) observer.observe(titleRef.current);
     if (formWrapperRef.current) observer.observe(formWrapperRef.current);
     if (buttonRef.current) observer.observe(buttonRef.current);
     if (contactInfoRef.current) observer.observe(contactInfoRef.current);
 
     return () => {
+      // Clean up observers
       if (titleRef.current) observer.unobserve(titleRef.current);
       if (formWrapperRef.current) observer.unobserve(formWrapperRef.current);
       if (buttonRef.current) observer.unobserve(buttonRef.current);
@@ -162,7 +172,7 @@ export default function Contact() {
     };
   }, []);
 
-  // Textos en base al idioma
+  // Text labels depending on the current language
   const firstH3 = lang === 'spanish' ? 'CONTACTO' : 'CONTACT';
   const nameLabel = lang === 'spanish' ? 'NOMBRE COMPLETO' : 'NAME & LASTNAME';
   const emailLabel = lang === 'spanish' ? 'CORREO' : 'EMAIL';
